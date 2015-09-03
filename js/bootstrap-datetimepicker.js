@@ -1319,6 +1319,22 @@
       this.updateNavArrows();
     },
 
+    showMonth : function () {
+      var newViewMode = 2;
+      if (newViewMode >= this.minView && newViewMode <= this.maxView) {
+        this.element.trigger({
+          type:        'changeMode',
+          date:        this.viewDate,
+          oldViewMode: this.viewMode,
+          newViewMode: newViewMode
+        });
+
+        this.viewMode = newViewMode;
+      }
+      this.picker.find('>div').hide().filter('.datetimepicker-' + DPGlobal.modes[this.viewMode].clsName).css('display', 'block');
+      this.updateNavArrows();
+    },
+
     reset: function (e) {
       this._setDate(null, 'date');
     },
